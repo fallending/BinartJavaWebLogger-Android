@@ -89,8 +89,7 @@ public class RemoteLogcatServer implements Runnable {
 
     private void showIPAddressMessage(final Context context) {
         final String ipAddress = NetworkUtils.getDeviceIpAddress(context);
-        if (!ipAddress.isEmpty()){
-
+        if (!ipAddress.isEmpty()) {
             //Open WebBrowser intent
             String url = "http://localhost:" + getPort();
             Intent webBrowserIntent = new Intent(Intent.ACTION_VIEW);
@@ -300,7 +299,7 @@ public class RemoteLogcatServer implements Runnable {
                         .replace(FILTERED_STRING, filtered_string_base.replace(GENERIC_TAG, filter.second));
             }
 
-            if(previousCleaning) {
+            if (previousCleaning) {
                 if( //Only for Rooted devices => result=0
                     Runtime.getRuntime().exec("logcat -c").waitFor()!=0
                     ){
@@ -322,12 +321,11 @@ public class RemoteLogcatServer implements Runnable {
             int lineNumber = 0;
             //Load logcat content
             while ((line = bufferedReader.readLine()) != null) {
-
                 // To filter last clean
                 if (!lastCleanFlag.equals("") && line.contains(lastCleanFlag)){
                     cleanFlagReached=true;
                     continue;
-                }else if (!lastCleanFlag.equals("") && !cleanFlagReached){
+                } else if (!lastCleanFlag.equals("") && !cleanFlagReached){
                     continue;
                 }
 
